@@ -19,6 +19,9 @@
     "recharts": "^3.7.0",
     "tailwind-merge": "^3.4.1"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@tailwindcss/postcss": "^4.1.18",
