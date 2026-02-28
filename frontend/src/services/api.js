@@ -1,0 +1,39 @@
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL || '/api',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+// Add a request interceptor to include auth token
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
+// Add a response interceptor to detect diagnostic headers
+api.interceptors.response.use(
+    (response) => {
+        const systemStatus = response.headers['x-system-status'];
+        if (systemStatus) {
+            window.dispatchEvent(new CustomEvent('system-status-update', { detail: systemStatus }));
+        }
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.headers['x-system-status']) {
+            window.dispatchEvent(new CustomEvent('system-status-update', { detail: error.response.headers['x-system-status'] }));
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default api;
