@@ -4,8 +4,8 @@ Momentum is an AI-powered full-stack web app that helps individuals track their 
 Built with React (Vite) + TailwindCSS for the frontend and Express + MongoDB for the backend, integrating the Google Gemini API for intelligent journaling insights.
 
 Deployed on:
-- 🌐 Frontend: Vercel ([View App](https://momentum-eight.vercel.app/))
-- ⚙️ Backend: Render ([API URL](https://momentum-backend-x5zq.onrender.com/))
+- 🌐 Frontend: Vercel
+- ⚙️ Backend: Render 
 - � Database: MongoDB Atlas
 
 ## 🚀 Features
